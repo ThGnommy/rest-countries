@@ -1,0 +1,3 @@
+const GET_ALL_COUNTRIES: string = "GET_ALL_COUNTRIES";
+
+export { GET_ALL_COUNTRIES };
