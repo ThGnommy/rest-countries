@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import Inputs from "./components/Inputs";
 import { getAllCountries } from "./redux/actions/countriesAction";
 import { useDispatch } from "react-redux";
+import CountriesList from "./components/CountriesList";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <Layout>
       <Inputs />
-      <h1>Hello! I'm some content</h1>
+      <CountriesList />
     </Layout>
   );
 }

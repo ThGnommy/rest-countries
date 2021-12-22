@@ -1,14 +1,16 @@
-import { AnyAction } from "redux";
-import { GET_ALL_COUNTRIES } from "../ActionTypes";
+import { CHANGE_COUNTRY, GET_ALL_COUNTRIES } from "../ActionTypes";
 
 const initialState = {
-  countris: [],
+  countries: {},
+  actualCountry: "europe",
 };
 
-export const reducerCountries = (state = initialState, action: AnyAction) => {
+export const reducerCountries = (state = initialState, action: any) => {
   switch (action.type) {
     case GET_ALL_COUNTRIES:
-      return action.payload;
+      return { ...state, countries: action.payload };
+    case CHANGE_COUNTRY:
+      return { ...state, actualCountry: action.payload.actualCountry };
     default:
       return { ...state };
   }

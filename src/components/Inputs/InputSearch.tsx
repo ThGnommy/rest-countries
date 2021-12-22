@@ -5,7 +5,7 @@ export const InputSearch = () => {
   return (
     <div className="relative">
       <input
-        className="w-96 h-14 px-14 rounded-md drop-shadow outline-none bg-white dark:bg-dark-element dark:text-gray-400"
+        className="w-96 h-14 px-14 rounded-md drop-shadow outline-none bg-white dark:bg-dark-element dark:text-white placeholder:text-dark-input"
         placeholder="Search for the country..."
         type="text"
       />

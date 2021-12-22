@@ -10,6 +10,9 @@ module.exports = {
         "design-black": "hsl(207, 26%, 17%)",
         "dark-element": "hsl(209, 23%, 22%)",
       },
+      colors: {
+        "dark-input": "hsl(0, 0%, 52%)"
+      }
     },
   },
   plugins: [],
