@@ -1,11 +1,44 @@
 import { faChevronDown } from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setRegion } from "../../redux/actions/countriesAction";
+import { useAppSelector } from "../../redux/hooks";
 
 export const InputFilter = () => {
+  const dispatch = useDispatch();
+
   const [show, setShow] = useState(false);
 
-  const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+  const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+
+  const { allCountries } = useAppSelector((state) => state.countries);
+
+  // const africa = allCountries.filter((country: any) => {
+  //   return country.region === "Africa";
+  // });
+
+  // const europe = allCountries.filter((country: any) => {
+  //   return country.region === "Europe";
+  // });
+
+  // const oceania = allCountries.filter((country: any) => {
+  //   return country.region === "Oceania";
+  // });
+
+  // const america = allCountries.filter((country: any) => {
+  //   return country.region === "Americas";
+  // });
+
+  // const asia = allCountries.filter((country: any) => {
+  //   return country.region === "Asia";
+  // });
+
+  const filteredRegion = (r: any) => {
+    return allCountries.filter((country: any) => {
+      return country.region === r;
+    });
+  };
 
   return (
     <div className="relative">
@@ -19,7 +52,11 @@ export const InputFilter = () => {
       {show && (
         <div className="absolute z-10 top-16 bg-white flex flex-col justify-between w-60 px-6 py-4 rounded-md drop-shadow select-none dark:bg-dark-element dark:text-white">
           {regions.map((region) => (
-            <p key={region} className="py-1 font-semibold cursor-pointer">
+            <p
+              key={region}
+              className="py-1 font-semibold cursor-pointer"
+              onClick={() => dispatch(setRegion(filteredRegion(region)))}
+            >
               {region}
             </p>
           ))}
