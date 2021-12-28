@@ -1,48 +1,17 @@
 import axios from "axios";
-import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { filtered_regions } from "../../api/countries";
+import { filtered_regions, get_country } from "../../api/countries";
 import {
+  FETCH_SUCCESS,
   GET_ALL_COUNTRIES,
+  RESET_COUNTRY,
+  RESET_QUERY,
+  SET_COUNTRY,
   SET_QUERY,
   SET_REGIONS,
 } from "../reducers/ActionTypes";
 import { RootState } from "../store";
-
-// export const getRegions =
-//   () => async (dispatch: ThunkDispatch<any, RootState, AnyAction>) => {
-//     const africa = axios.get(region_africa);
-//     const america = axios.get(region_america);
-//     const asia = axios.get(region_asia);
-//     const europe = axios.get(region_europe);
-//     const oceania = axios.get(region_oceania);
-
-//     await axios
-//       .all([africa, america, asia, europe, oceania])
-//       .then(
-//         axios.spread(
-//           (
-//             { data: africa },
-//             { data: america },
-//             { data: asia },
-//             { data: europe },
-//             { data: oceania }
-//           ) => {
-//             // use/access the results
-//             dispatch({
-//               type: GET_REGIONS,
-//               payload: {
-//                 regions: { africa, america, asia, europe, oceania },
-//               },
-//             });
-//           }
-//         )
-//       )
-//       .catch((error) => {
-//         console.error(error);
-//       });
-//   };
 
 export const getAllCountries =
   () => async (dispatch: ThunkDispatch<any, RootState, AnyAction>) => {
@@ -76,3 +45,30 @@ export const setQuery =
       payload: query,
     });
   };
+
+export const setCountry =
+  (name: string) => (dispatch: ThunkDispatch<any, RootState, AnyAction>) => {
+    axios
+      .get(get_country(name))
+      .then((res) => {
+        dispatch({
+          type: SET_COUNTRY,
+          payload: res.data[0],
+        });
+      })
+      .catch((error) => {
+        return console.error(error);
+      });
+  };
+
+export const fetchSuccess = (b: boolean) => (dispatch: any) => {
+  dispatch({ type: FETCH_SUCCESS, payload: b });
+};
+
+export const resetCountry = (dispatch: any) => {
+  dispatch({ type: RESET_COUNTRY });
+};
+
+export const resetQuery = (dispatch: any) => {
+  dispatch({ type: RESET_QUERY });
+};

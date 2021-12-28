@@ -5,6 +5,9 @@ import Inputs from "./components/Inputs";
 import { getAllCountries } from "./redux/actions/countriesAction";
 import { useDispatch } from "react-redux";
 import CountriesList from "./components/CountriesList";
+import Home from "./Pages/Home";
+import { Route, Routes } from "react-router-dom";
+import Details from "./Pages/Details";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -14,9 +17,9 @@ export default function App() {
   }, []);
 
   return (
-    <Layout>
-      <Inputs />
-      <CountriesList />
-    </Layout>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/:regionName" element={<Details />} />
+    </Routes>
   );
 }

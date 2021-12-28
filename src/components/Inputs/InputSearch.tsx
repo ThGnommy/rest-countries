@@ -1,6 +1,7 @@
 import { faSearch } from "@fortawesome/fontawesome-free-solid";
+import { IconDefinition } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { createRef, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setQuery } from "../../redux/actions/countriesAction";
 import { capitalize } from "../../utils";
@@ -23,7 +24,7 @@ export const InputSearch = () => {
       />
       <FontAwesomeIcon
         className="absolute left-6 top-1/2 -translate-y-2/4 text-gray-400"
-        icon={faSearch as any}
+        icon={faSearch as IconDefinition}
       />
     </div>
   );

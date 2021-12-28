@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 import { Country } from "./Country";
 
 export const CountriesList = () => {
+  let navigate = useNavigate();
+
   const { query, allCountries, filtered_countries } = useAppSelector(
     (state) => state.countries
   );
@@ -25,7 +28,10 @@ export const CountriesList = () => {
               name={country.name.common}
               population={country.population}
               region={country.region}
+              subregion={country.subregion}
               capital={country.capital[0]}
+              languages={country.languages}
+              borders={country.borders}
             />
           )
         )}
