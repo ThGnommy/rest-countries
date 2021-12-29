@@ -9,17 +9,19 @@ export const Country = ({ flag, name, population, region, capital }: any) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="bg-white place-self-center max-w-[320px] w-m rounded-md drop-shadow dark:bg-dark-element cursor-pointer select-none">
+    <div
+      className="bg-white place-self-center max-w-[320px] w-m rounded-md drop-shadow dark:bg-dark-element cursor-pointer select-none"
+      onClick={() => {
+        dispatch(setCountry(name));
+        navigate(`/${name}`);
+      }}
+    >
       <img
         width="320"
         height="160"
         className="h-[200px] rounded-t-md object-cover"
         src={flag}
         alt={name}
-        onClick={() => {
-          dispatch(setCountry(name));
-          navigate(`/${name}`);
-        }}
       />
       <div className="p-8">
         <h5 className="font-bold pb-4 dark:text-white">{name}</h5>
