@@ -14,12 +14,12 @@ import {
 interface AppState {
   filtered_countries: Array<object>;
   allCountries: Array<object>;
-  country: CountryProps;
+  country: CountryProps | object;
   query: string | undefined;
   fetching: boolean;
 }
 
-const initialState = {
+const initialState: AppState = {
   filtered_countries: [],
   allCountries: [],
   country: {},
