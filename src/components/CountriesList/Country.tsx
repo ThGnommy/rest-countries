@@ -1,8 +1,6 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCountry } from "../../redux/actions/countriesAction";
-import { CountryProps } from "./type";
 
 export const Country = ({ flag, name, population, region, capital }: any) => {
   let navigate = useNavigate();
