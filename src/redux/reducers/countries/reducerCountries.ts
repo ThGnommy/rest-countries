@@ -7,6 +7,7 @@ import {
   SET_QUERY,
   SET_REGIONS,
   RESET_QUERY,
+  FETCH_RESET,
 } from "../ActionTypes";
 
 const initialState = {
@@ -20,7 +21,9 @@ const initialState = {
 export const reducerCountries = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case FETCH_SUCCESS:
-      return { ...state, fetching: action.payload };
+      return { ...state, fetching: true };
+    case FETCH_RESET:
+      return { ...state, fetching: false };
     case SET_QUERY:
       return { ...state, query: action.payload };
     case RESET_QUERY:

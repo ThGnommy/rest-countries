@@ -4,15 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { CountryDetailsProps } from "../components/CountriesList/type";
 import Layout from "../components/Layout";
 import {
+  fetchReset,
   fetchSuccess,
   resetCountry,
   resetQuery,
 } from "../redux/actions/countriesAction";
 import { useAppSelector } from "../redux/hooks";
 import { numberWithCommas } from "../utils";
-import { ILanguages } from "./types";
 
 const Details = () => {
   const navigate = useNavigate();
@@ -21,10 +22,10 @@ const Details = () => {
 
   useEffect(() => {
     if (Object.entries(country).length > 0) {
-      dispatch(fetchSuccess(true));
+      dispatch(fetchSuccess);
     }
     return () => {
-      dispatch(fetchSuccess(false));
+      dispatch(fetchReset);
       dispatch(resetQuery);
     };
   }, [country, dispatch]);
@@ -50,7 +51,7 @@ const Details = () => {
               className="h-auto w-[500px]"
               width={500}
               src={fetching ? country.flags.svg : undefined}
-              alt={fetching && country.name.common}
+              alt={fetching ? country.name.common : undefined}
             />
             <div className="flex flex-col justify-around mt-12 lg:mt-0 lg:w-5/12">
               <div className="flex flex-col lg:flex-row justify-between">
@@ -60,7 +61,9 @@ const Details = () => {
                   </h2>
                   <p className="pb-2">
                     <span className="font-extrabold">Native Name</span>:{" "}
-                    {fetching && country.name.official}
+                    {fetching &&
+                      Object.entries<any>(country.name.nativeName)[0][1]
+                        .official}
                   </p>
                   <p className="pb-2">
                     <span className="font-extrabold">Population</span>:{" "}
@@ -88,7 +91,9 @@ const Details = () => {
                   <p className="pb-2">
                     <span className="font-extrabold">Currencies</span>:{" "}
                     {fetching &&
-                      Object.entries<ILanguages>(country.currencies)[0][1].name}
+                      Object.entries<CountryDetailsProps>(
+                        country.currencies
+                      )[0][1].name}
                   </p>
                   <p className="pb-2">
                     <span className="font-extrabold">Languages</span>:{" "}
@@ -100,14 +105,16 @@ const Details = () => {
                 <p className="pb-4 md:pb-0">
                   <span className="pt-4 font-extrabold">Border Countries</span>:{" "}
                   {fetching && country.borders.length > 0
-                    ? Object.values<any>(country.borders).map((el) => (
-                        <span
-                          key={el}
-                          className="inline-flex bg-white px-3 py-1 mx-1 mb-3 rounded drop-shadow dark:bg-dark-element select-none"
-                        >
-                          {el}
-                        </span>
-                      ))
+                    ? Object.values<CountryDetailsProps>(country.borders).map(
+                        (el: any) => (
+                          <span
+                            key={el}
+                            className="inline-flex bg-white px-3 py-1 mx-1 mb-3 rounded drop-shadow dark:bg-dark-element select-none"
+                          >
+                            {el}
+                          </span>
+                        )
+                      )
                     : "None"}
                 </p>
               </div>

@@ -1,8 +1,10 @@
 import axios from "axios";
+import { DispatchProp } from "react-redux";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { filtered_regions, get_country } from "../../api/countries";
 import {
+  FETCH_RESET,
   FETCH_SUCCESS,
   GET_ALL_COUNTRIES,
   RESET_COUNTRY,
@@ -14,7 +16,7 @@ import {
 import { RootState } from "../store";
 
 export const getAllCountries =
-  () => async (dispatch: ThunkDispatch<any, RootState, AnyAction>) => {
+  () => async (dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>) => {
     axios
       .get(filtered_regions)
       .then((res) => {
@@ -28,18 +30,20 @@ export const getAllCountries =
       });
   };
 
-export const setRegion = (regions: any) => async (dispatch: any) => {
-  dispatch({
-    type: SET_REGIONS,
-    payload: {
-      filtered_countries: regions,
-    },
-  });
-};
+export const setRegion =
+  (regions: any) =>
+  async (dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>) => {
+    dispatch({
+      type: SET_REGIONS,
+      payload: {
+        filtered_countries: regions,
+      },
+    });
+  };
 
 export const setQuery =
   (query: any) =>
-  async (dispatch: ThunkDispatch<any, RootState, AnyAction>) => {
+  async (dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>) => {
     dispatch({
       type: SET_QUERY,
       payload: query,
@@ -47,7 +51,8 @@ export const setQuery =
   };
 
 export const setCountry =
-  (name: string) => (dispatch: ThunkDispatch<any, RootState, AnyAction>) => {
+  (name: string) =>
+  (dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>) => {
     axios
       .get(get_country(name))
       .then((res) => {
@@ -61,14 +66,26 @@ export const setCountry =
       });
   };
 
-export const fetchSuccess = (b: boolean) => (dispatch: any) => {
-  dispatch({ type: FETCH_SUCCESS, payload: b });
+export const fetchSuccess = (
+  dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>
+) => {
+  dispatch({ type: FETCH_SUCCESS });
 };
 
-export const resetCountry = (dispatch: any) => {
+export const fetchReset = (
+  dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>
+) => {
+  dispatch({ type: FETCH_RESET });
+};
+
+export const resetCountry = (
+  dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>
+) => {
   dispatch({ type: RESET_COUNTRY });
 };
 
-export const resetQuery = (dispatch: any) => {
+export const resetQuery = (
+  dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>
+) => {
   dispatch({ type: RESET_QUERY });
 };

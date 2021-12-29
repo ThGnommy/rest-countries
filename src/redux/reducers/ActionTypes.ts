@@ -13,6 +13,8 @@ const RESET_COUNTRY: string = "RESET_COUNTRY";
 
 const FETCH_SUCCESS: string = "FETCH_SUCCESS";
 
+const FETCH_RESET: string = "FETCH_RESET";
+
 export {
   SET_REGIONS,
   CHANGE_COUNTRY,
@@ -22,4 +24,5 @@ export {
   SET_COUNTRY,
   RESET_COUNTRY,
   FETCH_SUCCESS,
+  FETCH_RESET,
 };
