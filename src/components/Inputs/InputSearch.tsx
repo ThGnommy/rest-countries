@@ -12,9 +12,9 @@ export const InputSearch = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <input
-        className="w-96 h-14 px-14 rounded-md drop-shadow outline-none bg-white dark:bg-dark-element dark:text-white placeholder:text-dark-input"
+        className="w-auto sm:w-96 h-14 px-14 rounded-md drop-shadow outline-none bg-white dark:bg-dark-element dark:text-white placeholder:text-dark-input"
         placeholder="Search for the country..."
         type="text"
         ref={inputRef}

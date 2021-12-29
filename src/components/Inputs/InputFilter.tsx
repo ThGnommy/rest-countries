@@ -14,26 +14,6 @@ export const InputFilter = () => {
 
   const { allCountries } = useAppSelector((state) => state.countries);
 
-  // const africa = allCountries.filter((country: any) => {
-  //   return country.region === "Africa";
-  // });
-
-  // const europe = allCountries.filter((country: any) => {
-  //   return country.region === "Europe";
-  // });
-
-  // const oceania = allCountries.filter((country: any) => {
-  //   return country.region === "Oceania";
-  // });
-
-  // const america = allCountries.filter((country: any) => {
-  //   return country.region === "Americas";
-  // });
-
-  // const asia = allCountries.filter((country: any) => {
-  //   return country.region === "Asia";
-  // });
-
   const filteredRegion = (r: any) => {
     return allCountries.filter((country: any) => {
       return country.region === r;
@@ -55,7 +35,10 @@ export const InputFilter = () => {
             <p
               key={region}
               className="py-1 font-semibold cursor-pointer"
-              onClick={() => dispatch(setRegion(filteredRegion(region)))}
+              onClick={() => {
+                dispatch(setRegion(filteredRegion(region)));
+                setShow((prev) => !prev);
+              }}
             >
               {region}
             </p>

@@ -23,11 +23,14 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="flex bg-white items-center justify-between w-full h-20 border-b shadow select-none px-16 dark:bg-dark-element">
-      <h1 className="text-3xl font-extrabold dark:text-white">
+    <header className="flex bg-white items-center justify-between w-full h-20 border-b shadow select-none px-4 md:px-16 dark:bg-dark-element">
+      <h1 className="text-lg md:text-3xl font-extrabold dark:text-white">
         Where in the world?
       </h1>
-      <div className="flex cursor-pointer" onClick={handleDarkMode}>
+      <div
+        className="flex cursor-pointer text-sm md:text-lg"
+        onClick={handleDarkMode}
+      >
         <FontAwesomeIcon
           className="mr-3 dark:text-white"
           icon={faMoon}

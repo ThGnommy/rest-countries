@@ -1,10 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
+import { numberWithCommas } from "../../utils";
 import { Country } from "./Country";
 
 export const CountriesList = () => {
-  let navigate = useNavigate();
-
   const { query, allCountries, filtered_countries } = useAppSelector(
     (state) => state.countries
   );
@@ -18,7 +16,7 @@ export const CountriesList = () => {
   });
 
   return (
-    <div className="w-full grid gap-20 grid-cols-4 pb-8 place-self-center">
+    <div className="w-full grid gap-20 grid-cols-1 pb-8 place-self-center text-[14px] sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       {filtered_countries &&
         query_region_filtered?.map(
           (country: any): JSX.Element => (
@@ -26,7 +24,7 @@ export const CountriesList = () => {
               key={country.name.common}
               flag={country.flags.png}
               name={country.name.common}
-              population={country.population}
+              population={numberWithCommas(country.population)}
               region={country.region}
               subregion={country.subregion}
               capital={country.capital[0]}
@@ -42,7 +40,7 @@ export const CountriesList = () => {
               key={country.name.common}
               flag={country.flags.png}
               name={country.name.common}
-              population={country.population}
+              population={numberWithCommas(country.population)}
               region={country.region}
               capital={country.capital[0]}
             />

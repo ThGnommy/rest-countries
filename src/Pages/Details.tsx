@@ -1,7 +1,7 @@
 import { faArrowLeft } from "@fortawesome/fontawesome-free-solid";
 import { IconDefinition } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
@@ -12,7 +12,7 @@ import {
 } from "../redux/actions/countriesAction";
 import { useAppSelector } from "../redux/hooks";
 import { numberWithCommas } from "../utils";
-import { Border, ILanguages } from "./types";
+import { ILanguages } from "./types";
 
 const Details = () => {
   const navigate = useNavigate();
@@ -27,14 +27,14 @@ const Details = () => {
       dispatch(fetchSuccess(false));
       dispatch(resetQuery);
     };
-  }, [country]);
+  }, [country, dispatch]);
 
   return (
     <Layout>
       <div className="flex px-4 xl:px-16 flex-col text-[16px] dark:text-white">
         <div>
           <button
-            className="flex w-28 bg-design-white py-2 my-20 justify-evenly items-center rounded drop-shadow-md capitalize dark:bg-dark-element"
+            className="flex w-28 bg-design-white py-2 my-8 md:my-20 justify-evenly items-center rounded drop-shadow-md capitalize dark:bg-dark-element"
             onClick={() => {
               navigate("/");
               dispatch(resetCountry);
@@ -49,7 +49,7 @@ const Details = () => {
             <img
               className="h-auto w-[500px]"
               width={500}
-              src={fetching && country.flags.svg}
+              src={fetching ? country.flags.svg : undefined}
               alt={fetching && country.name.common}
             />
             <div className="flex flex-col justify-around mt-12 lg:mt-0 lg:w-5/12">
@@ -90,20 +90,20 @@ const Details = () => {
                     {fetching &&
                       Object.entries<ILanguages>(country.currencies)[0][1].name}
                   </p>
-                  <p>
+                  <p className="pb-2">
                     <span className="font-extrabold">Languages</span>:{" "}
                     {fetching && Object.values(country.languages).join(", ")}
                   </p>
                 </div>
               </div>
-              <div className="">
-                <p>
+              <div>
+                <p className="pb-4 md:pb-0">
                   <span className="pt-4 font-extrabold">Border Countries</span>:{" "}
                   {fetching && country.borders.length > 0
                     ? Object.values<any>(country.borders).map((el) => (
                         <span
                           key={el}
-                          className="bg-white px-3 py-1 mx-1 rounded drop-shadow dark:bg-dark-element select-none"
+                          className="inline-flex bg-white px-3 py-1 mx-1 mb-3 rounded drop-shadow dark:bg-dark-element select-none"
                         >
                           {el}
                         </span>
