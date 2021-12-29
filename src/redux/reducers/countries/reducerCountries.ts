@@ -1,4 +1,5 @@
 import { AnyAction } from "redux";
+import { CountryProps } from "../../../components/CountriesList/type";
 import {
   FETCH_SUCCESS,
   GET_ALL_COUNTRIES,
@@ -9,6 +10,14 @@ import {
   RESET_QUERY,
   FETCH_RESET,
 } from "../ActionTypes";
+
+interface AppState {
+  filtered_countries: Array<object>;
+  allCountries: Array<object>;
+  country: CountryProps;
+  query: string | undefined;
+  fetching: boolean;
+}
 
 const initialState = {
   filtered_countries: [],
