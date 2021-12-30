@@ -66,25 +66,25 @@ export const setCountry =
       });
   };
 
-export const fetchSuccess = (
+export const fetchSuccess = async (
   dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>
 ) => {
   dispatch({ type: FETCH_SUCCESS });
 };
 
-export const fetchReset = (
+export const fetchReset = async (
   dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>
 ) => {
   dispatch({ type: FETCH_RESET });
 };
 
-export const resetCountry = (
+export const resetCountry = async (
   dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>
 ) => {
   dispatch({ type: RESET_COUNTRY });
 };
 
-export const resetQuery = (
+export const resetQuery = async (
   dispatch: ThunkDispatch<DispatchProp, RootState, AnyAction>
 ) => {
   dispatch({ type: RESET_QUERY });

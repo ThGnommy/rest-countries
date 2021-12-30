@@ -28,7 +28,7 @@ const Details = () => {
     return () => {
       dispatch(fetchReset);
       dispatch(resetQuery);
-      dispatch(resetCountry);
+      // dispatch(resetCountry);
     };
   }, [country, dispatch]);
 
@@ -57,7 +57,7 @@ const Details = () => {
               <img
                 className="h-auto w-[500px]"
                 width={500}
-                src={fetching ? country.flags.svg : undefined}
+                src={fetching ? country.flags?.svg : undefined}
                 alt={fetching ? country.name.common : undefined}
               />
               <div className="flex flex-col justify-around mt-12 lg:mt-0 lg:w-5/12">
